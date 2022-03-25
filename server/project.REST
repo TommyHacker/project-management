@@ -1,0 +1,35 @@
+POST http://localhost:4000/project/
+Content-Type: application/json
+
+{
+    "title": "tickets need timestamps yo!"
+}
+###
+GET http://localhost:4000/project/all
+###
+GET http://localhost:4000/project/all/admin
+###
+
+DELETE http://localhost:4000/project/
+Content-Type: application/json
+
+{
+    "id": "622cd077237b08195ecf51d2"
+}
+###
+PATCH http://localhost:4000/project/assigned
+Content-Type: application/json
+
+{
+    "id": "622fb85f087df29c458c5a3d",
+    "assigned": ["admin","tommy hacker","tommy five"]
+}
+###
+PATCH http://localhost:4000/project/status
+Content-Type: application/json
+
+{
+    "id": "622cd077237b08195ecf51d2",
+    "status": "in development mode"
+}
+###

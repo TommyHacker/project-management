@@ -1,0 +1,13 @@
+/** @format */
+
+nav {
+	width: 100vw;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	padding: 2rem;
+	flex-direction: row;
+	.home-btn {
+		cursor: pointer;
+	}
+}

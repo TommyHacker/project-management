@@ -1,0 +1,83 @@
+/** @format */
+
+.notification-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-width: 800px;
+	width: 100%;
+	animation-name: fadeIn;
+	animation-duration: 0.2s;
+	animation-fill-mode: forwards;
+	.notification-sender {
+		background: black;
+		color: white;
+		min-width: 200px;
+		text-align: center;
+		margin: 1px;
+		text-transform: capitalize;
+		&::after {
+			content: ':';
+		}
+	}
+	.notification-content {
+		width: 100%;
+		text-align: center;
+	}
+	.notification-date {
+		min-width: 100px;
+		color: rgb(61, 61, 61);
+		text-align: center;
+	}
+}
+.mark-as-read-btn {
+	background: none;
+	border: none;
+	width: 200px;
+	font-size: 8pt;
+	box-shadow: 0px 0px 4px grey;
+	padding: 5px 0;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.read {
+	color: rgb(151, 71, 71);
+	background: rgb(214, 214, 214);
+	opacity: 0.5;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+	}
+}
+
+.mark-as-container {
+	width: 40px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.marked-as-read {
+	animation-name: fadeIn;
+	animation-duration: 0.2s;
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	padding: 5px;
+	background: rgba(255, 0, 0, 0.623);
+	border: solid rgba(0, 0, 0, 0.377) 1px;
+}
+
+.delete-btn {
+	padding: 5px;
+	border: none;
+	background: none;
+	box-shadow: 0px 0px 2px grey;
+	cursor: pointer;
+}

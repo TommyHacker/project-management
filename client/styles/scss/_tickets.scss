@@ -1,0 +1,124 @@
+/** @format */
+
+.ticket-section {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background: #e0e0e0;
+	margin: 10px auto;
+	padding: 10px;
+	border-radius: 4px;
+	text-overflow: ellipsis;
+	.ticket-info {
+		width: 90%;
+		text-align: left;
+		color: rgb(31, 31, 31);
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.171);
+		border-radius: 4px;
+		background: rgb(235, 235, 235);
+		padding: 10px 20px;
+		&::first-letter {
+			text-transform: capitalize;
+		}
+	}
+}
+
+.ticket-card {
+	padding: 10px 0;
+	border-radius: 4px;
+	margin: 80px auto;
+	transition: 2s ease;
+	height: 140px;
+	cursor: pointer;
+	opacity: 0.7;
+	&:hover {
+		opacity: 1;
+	}
+	// .ticket-section {
+	// }
+	.ticket-section-title {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: rgb(97, 97, 97);
+		padding: 0 20px;
+		font-size: 18pt;
+
+		h4 {
+			color: white;
+		}
+	}
+}
+
+.ticket-card-retracted {
+	height: 135px;
+	transition: 0.3s ease;
+	overflow-y: hidden;
+	background: rgba(0, 0, 0, 0);
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.ticket-card-expanded {
+	overflow-y: hidden;
+	transition: 0.3s ease;
+	height: 723px;
+	overflow: visible;
+	opacity: 1;
+}
+.ticket-controller {
+	z-index: 102;
+	transition: 0.2s ease;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	border-radius: 4px;
+	height: 400px;
+	cursor: default;
+	.ticket-actions {
+		padding: 0 5px;
+		height: 100%;
+		transition: 0.2s ease;
+		display: flex;
+		overflow: hidden;
+		flex-direction: column;
+		justify-content: space-between;
+		.section {
+			box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.308);
+			.ticket-update {
+				overflow-y: scroll;
+				border-radius: 20px;
+				padding: 10px;
+				background-color: white;
+				margin: 40px auto;
+				display: flex;
+				flex-direction: row;
+			}
+		}
+		.updates-section {
+			background: rgb(214, 214, 214);
+			height: 280px;
+			overflow: scroll;
+			padding: 0 40px;
+		}
+	}
+}
+.ticket-updates-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.ticket-update-author {
+	font-weight: 600;
+	&::first-letter {
+		text-transform: capitalize;
+	}
+	&::after {
+		content: ' :';
+	}
+}
+.ticket-update-content {
+	font-weight: 400;
+}

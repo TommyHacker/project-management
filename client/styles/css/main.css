@@ -1,0 +1,865 @@
+/** @format */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  color: #222222;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.content {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: solid black 1px;
+}
+
+.btn-container {
+  width: 300px;
+  display: flex;
+  margin: 20px auto;
+  justify-content: space-around;
+  padding: 10px;
+}
+.btn-container button {
+  text-transform: capitalize;
+  padding: 5px;
+}
+
+.title {
+  text-transform: capitalize;
+}
+
+/** @format */
+.user-form {
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 40px rgba(26, 26, 26, 0.315);
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 4px;
+}
+.user-form .title {
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  width: 100%;
+  padding: 2rem;
+  background-image: linear-gradient(to right, whitesmoke, #8b8b8b);
+  font-size: 20pt;
+}
+.user-form .section {
+  width: 70%;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+.user-form .section input {
+  width: 60%;
+  padding: 5px 10px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 4px rgba(26, 26, 26, 0.315);
+}
+.user-form button {
+  padding: 5px;
+  margin-top: 40px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.ticket-form-container {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  background: white;
+  box-shadow: 0px 0px 50px rgba(44, 44, 44, 0.116);
+  border-radius: 4px;
+  padding: 20px;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+.ticket-form-container .title-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.ticket-form-container .ticket-form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.ticket-form-container .ticket-form .section {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+}
+.ticket-form-container .ticket-form .section label {
+  width: 130px;
+}
+.ticket-form-container .ticket-form .section label::after {
+  content: ":";
+}
+.ticket-form-container .ticket-form .section input {
+  width: 100%;
+  margin: 0 20px;
+  padding: 10px;
+  border: none;
+  box-shadow: 0px 0px 2px grey;
+  border-radius: 4px;
+}
+.ticket-form-container .project-id {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 8pt;
+  color: grey;
+}
+
+.comment-form-container {
+  z-index: 100;
+  background: #c0bfbf;
+  padding: 10px;
+  width: 100%;
+}
+.comment-form-container .comment-form {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.comment-form-container .comment-form .section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+.comment-form-container .comment-form .section input {
+  padding: 5px 10px;
+  width: 100%;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  transition: 0.2s ease;
+}
+.comment-form-container .comment-form .section input:focus {
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #3b3b3b;
+}
+
+.ticket-update-form-container .ticket-update-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.ticket-update-form-container .ticket-update-form .section {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.ticket-update-form-container .ticket-update-form .section input {
+  padding: 10px 20px;
+  width: 85%;
+  border: none;
+  transition: 0.3s;
+}
+.ticket-update-form-container .ticket-update-form .section input:focus {
+  outline: none;
+}
+
+/** @format */
+.page-container {
+  display: flex;
+  width: calc(100vw - 15rem);
+  left: 15rem;
+  top: 0;
+  min-width: 550px;
+  height: 100vh;
+  min-height: 768px;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+}
+.page-container h1,
+.page-container h2,
+.page-container h3,
+.page-container h4,
+.page-container h5,
+.page-container h6,
+.page-container p {
+  padding: 10px;
+}
+
+h1 {
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.body {
+  min-width: 100%;
+  min-height: 80vh;
+  max-height: 80vh;
+  margin: 10px;
+  margin-top: 3rem;
+  padding: 20px;
+  box-shadow: 0px 0px 4px rgba(34, 34, 34, 0.157);
+  border-radius: 4px;
+  overflow-y: scroll;
+}
+
+/** @format */
+nav {
+  width: 100vw;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  flex-direction: row;
+}
+nav .home-btn {
+  cursor: pointer;
+}
+
+/** @format */
+.side-bar {
+  min-height: 768px;
+  width: 2rem;
+  box-shadow: 2px 20px 50px rgba(128, 128, 128, 0.294);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0;
+  justify-content: space-around;
+}
+.side-bar .title {
+  position: absolute;
+  top: 1rem;
+  cursor: pointer;
+}
+.side-bar .user-pog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 3px grey;
+  background: black;
+  color: white;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.side-bar .section {
+  text-transform: capitalize;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.side-bar .section a,
+.side-bar .section .link {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 4rem;
+  transition: 0.2s ease;
+  text-decoration: none;
+  font-weight: 700;
+}
+.side-bar .section a:hover,
+.side-bar .section .link:hover {
+  background: #353434;
+  color: white;
+}
+.side-bar * {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.notification-dot {
+  background-image: radial-gradient(#e27c7c, #ad4c4c);
+  color: white;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  font-size: 10pt;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 11rem;
+  pointer-events: none;
+}
+
+.logout-btn {
+  border: none;
+  padding: 5px 10px;
+  box-shadow: 0px 0px 4px grey;
+  background: #353535;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 1rem;
+  left: 4rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/** @format */
+.notification-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 800px;
+  width: 100%;
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+.notification-card .notification-sender {
+  background: black;
+  color: white;
+  min-width: 200px;
+  text-align: center;
+  margin: 1px;
+  text-transform: capitalize;
+}
+.notification-card .notification-sender::after {
+  content: ":";
+}
+.notification-card .notification-content {
+  width: 100%;
+  text-align: center;
+}
+.notification-card .notification-date {
+  min-width: 100px;
+  color: #3d3d3d;
+  text-align: center;
+}
+
+.mark-as-read-btn {
+  background: none;
+  border: none;
+  width: 200px;
+  font-size: 8pt;
+  box-shadow: 0px 0px 4px grey;
+  padding: 5px 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.read {
+  color: #974747;
+  background: #d6d6d6;
+  opacity: 0.5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+.mark-as-container {
+  width: 40px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.marked-as-read {
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  padding: 5px;
+  background: rgba(255, 0, 0, 0.623);
+  border: solid rgba(0, 0, 0, 0.377) 1px;
+}
+
+.delete-btn {
+  padding: 5px;
+  border: none;
+  background: none;
+  box-shadow: 0px 0px 2px grey;
+  cursor: pointer;
+}
+
+/** @format */
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.project-card {
+  cursor: pointer;
+  width: 100%;
+  margin-top: 30px;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+.project-card:hover {
+  opacity: 1;
+}
+.project-card .project-update {
+  background: #e7e7e7;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.project-card .project-update .project-assigned-list {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+}
+.project-card .project-header {
+  border-radius: 4px;
+  background: #2a2a2a;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.project-card .project-header h4,
+.project-card .project-header p {
+  color: white;
+}
+
+.back-btn {
+  left: 8rem;
+  top: 4rem;
+  position: absolute;
+}
+
+.save-btn {
+  right: 8rem;
+  position: absolute;
+  top: 4rem;
+}
+
+.delete-btn {
+  bottom: 2rem;
+  right: 8rem;
+}
+
+.delete-btn-container {
+  text-align: right;
+  padding-right: 4rem;
+}
+
+.btn {
+  min-width: 90px;
+  padding: 10px 20px;
+  font-size: 9pt;
+  border: none;
+  background: white;
+  box-shadow: 0px 0px 3px #cccccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.small {
+  width: 300px;
+}
+
+.project-page-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #e0e0e0;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 4px;
+}
+.project-page-section form select {
+  padding: 5px 10px;
+  border: none;
+  text-transform: capitalize;
+  box-shadow: 0px 0px 2px grey;
+  border-radius: 4px;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+.project-page-section form select option:focus {
+  cursor: pointer;
+}
+.project-page-section form select:focus {
+  background: #2f2f2f;
+  color: white;
+}
+.project-page-section form select:focus option {
+  color: white;
+  cursor: pointer;
+}
+.project-page-section .assigned-list {
+  background: rgba(255, 255, 255, 0.397);
+  text-transform: capitalize;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.project-page-section .assigned-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 5px;
+  box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.281);
+}
+.project-page-section button {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 25% auto;
+  gap: 20px;
+}
+
+.add-devs-list {
+  width: 200px;
+  background: #4d4d4d;
+  position: fixed;
+  right: 7rem;
+  top: 14.5rem;
+  overflow-y: scroll;
+  border-radius: 4px;
+}
+.add-devs-list h1 {
+  color: white;
+}
+
+.devs-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.devs-list h4 {
+  color: white;
+  border: white solid 1px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+.devs-list h4:hover {
+  background: #2a2a2a;
+}
+
+/** @format */
+.allusers-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.user-card {
+  border-radius: 4px;
+  margin: 20px;
+  box-shadow: 0px 0px 2px grey;
+  display: grid;
+  transition: 0.3s ease;
+}
+.user-card .user-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.user-card .user-section .control {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 10px;
+}
+.user-card .user-section .control select {
+  height: 20px;
+  width: 80px;
+  padding: 0 5px;
+}
+.user-card .user-title {
+  background: #2c2c2c;
+  color: white;
+}
+
+/** @format */
+.comments-container {
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(128, 128, 128, 0.349);
+  border-radius: 4px;
+  width: 100%;
+  padding: 20px;
+  max-height: 400px;
+}
+.comments-container .comments-overlay {
+  height: 369px;
+  width: 100%;
+  overflow: scroll;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.comments-container .comments {
+  padding: 5px;
+  margin: 10px 5px;
+  transition: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.comments-container .comments p {
+  max-width: 69%;
+  border-radius: 20px;
+  padding: 10px 20px;
+  width: fit-content;
+}
+
+.comments-dev {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+}
+.comments-dev p {
+  background: #7c7c7c;
+  color: white;
+}
+.comments-dev span {
+  color: white;
+}
+
+.comments-author {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+.comments-author p {
+  background: #3a3a3a;
+  color: white;
+}
+.comments-author span {
+  color: white;
+}
+
+.comment-author-span {
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 10px;
+}
+
+/** @format */
+.ticket-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #e0e0e0;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+}
+.ticket-section .ticket-info {
+  width: 90%;
+  text-align: left;
+  color: #1f1f1f;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.171);
+  border-radius: 4px;
+  background: #ebebeb;
+  padding: 10px 20px;
+}
+.ticket-section .ticket-info::first-letter {
+  text-transform: capitalize;
+}
+
+.ticket-card {
+  padding: 10px 0;
+  border-radius: 4px;
+  margin: 80px auto;
+  transition: 2s ease;
+  height: 140px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.ticket-card:hover {
+  opacity: 1;
+}
+.ticket-card .ticket-section-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #616161;
+  padding: 0 20px;
+  font-size: 18pt;
+}
+.ticket-card .ticket-section-title h4 {
+  color: white;
+}
+
+.ticket-card-retracted {
+  height: 135px;
+  transition: 0.3s ease;
+  overflow-y: hidden;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.ticket-card-expanded {
+  overflow-y: hidden;
+  transition: 0.3s ease;
+  height: 723px;
+  overflow: visible;
+  opacity: 1;
+}
+
+.ticket-controller {
+  z-index: 102;
+  transition: 0.2s ease;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-radius: 4px;
+  height: 400px;
+  cursor: default;
+}
+.ticket-controller .ticket-actions {
+  padding: 0 5px;
+  height: 100%;
+  transition: 0.2s ease;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ticket-controller .ticket-actions .section {
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.308);
+}
+.ticket-controller .ticket-actions .section .ticket-update {
+  overflow-y: scroll;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: white;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: row;
+}
+.ticket-controller .ticket-actions .updates-section {
+  background: #d6d6d6;
+  height: 280px;
+  overflow: scroll;
+  padding: 0 40px;
+}
+
+.ticket-updates-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket-update-author {
+  font-weight: 600;
+}
+.ticket-update-author::first-letter {
+  text-transform: capitalize;
+}
+.ticket-update-author::after {
+  content: " :";
+}
+
+.ticket-update-content {
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,47 @@
+/** @format */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+	color: rgb(34, 34, 34);
+}
+html,
+body {
+	overflow-x: hidden;
+}
+::-webkit-scrollbar {
+	display: none;
+}
+.content {
+	display: flex;
+	padding-top: 20px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	border: solid black 1px;
+}
+.btn-container {
+	width: 300px;
+	display: flex;
+	margin: 20px auto;
+	justify-content: space-around;
+	padding: 10px;
+	button {
+		text-transform: capitalize;
+		padding: 5px;
+	}
+}
+.title {
+	text-transform: capitalize;
+}
+@import './form';
+@import './page-container';
+@import './nav';
+@import './sidebar';
+@import './notification';
+@import './projects';
+@import './allusers';
+@import './comments';
+@import './tickets';

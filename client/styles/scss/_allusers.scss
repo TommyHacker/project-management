@@ -1,0 +1,37 @@
+/** @format */
+
+.allusers-container {
+	display: flex;
+	flex-direction: column;
+	border-radius: 4px;
+	padding: 20px;
+}
+.user-card {
+	border-radius: 4px;
+	margin: 20px;
+	box-shadow: 0px 0px 2px grey;
+	display: grid;
+	transition: 0.3s ease;
+	.user-section {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: row;
+		.control {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			padding: 0 10px;
+			select {
+				height: 20px;
+				width: 80px;
+				padding: 0 5px;
+			}
+		}
+	}
+	.user-title {
+		background: rgb(44, 44, 44);
+		color: white;
+	}
+}

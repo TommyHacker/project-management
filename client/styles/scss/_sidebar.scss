@@ -1,0 +1,101 @@
+/** @format */
+
+.side-bar {
+	.title {
+		position: absolute;
+		top: 1rem;
+		cursor: pointer;
+	}
+	min-height: 768px;
+	width: 2rem;
+	box-shadow: 2px 20px 50px rgba(128, 128, 128, 0.294);
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: 15rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 80px 0;
+	justify-content: space-around;
+	.user-pog {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		box-shadow: 0px 0px 3px grey;
+		background: black;
+		color: white;
+		cursor: pointer;
+		margin: 0 auto;
+	}
+	.section {
+		text-transform: capitalize;
+		width: 100%;
+		height: 25%;
+		display: flex;
+		justify-content: space-around;
+		flex-direction: column;
+		a,
+		.link {
+			cursor: pointer;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			padding-left: 4rem;
+			transition: 0.2s ease;
+			text-decoration: none;
+			font-weight: 700;
+			&:hover {
+				background: rgb(53, 52, 52);
+				color: white;
+			}
+		}
+	}
+	* {
+		animation-name: fadeIn;
+		animation-duration: 0.3s;
+		animation-fill-mode: forwards;
+	}
+}
+
+.notification-dot {
+	background-image: radial-gradient(rgb(226, 124, 124), rgb(173, 76, 76));
+	color: white;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	font-size: 10pt;
+	padding: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	left: 11rem;
+	pointer-events: none;
+}
+
+.logout-btn {
+	border: none;
+	padding: 5px 10px;
+	box-shadow: 0px 0px 4px grey;
+	background: rgb(53, 53, 53);
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	bottom: 1rem;
+	left: 4rem;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

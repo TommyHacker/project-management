@@ -1,0 +1,165 @@
+/** @format */
+
+.projects-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-transform: capitalize;
+}
+
+.project-card {
+	cursor: pointer;
+	width: 100%;
+	margin-top: 30px;
+	opacity: 0.8;
+	transition: 0.3s ease;
+	&:hover {
+		opacity: 1;
+	}
+	.project-update {
+		background: rgb(231, 231, 231);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 20px;
+		.project-assigned-list {
+			width: fit-content;
+			display: flex;
+			flex-direction: row;
+		}
+	}
+	.project-header {
+		border-radius: 4px;
+		background: rgb(42, 42, 42);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 0 20px;
+		h4,
+		p {
+			color: white;
+		}
+	}
+}
+
+//////////// SINGLE PROJECT PAGE ///////////
+.back-btn {
+	left: 8rem;
+	top: 4rem;
+	position: absolute;
+}
+.save-btn {
+	right: 8rem;
+	position: absolute;
+	top: 4rem;
+}
+.delete-btn {
+	bottom: 2rem;
+	right: 8rem;
+}
+.delete-btn-container {
+	text-align: right;
+	padding-right: 4rem;
+}
+.btn {
+	min-width: 90px;
+	padding: 10px 20px;
+	font-size: 9pt;
+	border: none;
+	background: white;
+	box-shadow: 0px 0px 3px rgb(204, 204, 204);
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.small {
+	width: 300px;
+}
+.project-page-section {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	background: #e0e0e0;
+	margin: 10px auto;
+	padding: 20px;
+	border-radius: 4px;
+	form {
+		select {
+			padding: 5px 10px;
+			border: none;
+			text-transform: capitalize;
+			box-shadow: 0px 0px 2px grey;
+			border-radius: 4px;
+			transition: 0.4s ease;
+			cursor: pointer;
+			option:focus {
+				cursor: pointer;
+			}
+			&:focus {
+				option {
+					color: white;
+					cursor: pointer;
+				}
+				background: rgb(47, 47, 47);
+				color: white;
+			}
+		}
+	}
+	.assigned-list {
+		background: rgba(255, 255, 255, 0.397);
+		text-transform: capitalize;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		div {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-direction: row;
+			padding: 5px;
+			box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.281);
+		}
+	}
+	button {
+		padding: 5px;
+		width: 30px;
+		height: 30px;
+	}
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 25% auto;
+	gap: 20px;
+}
+
+.add-devs-list {
+	width: 200px;
+	background: rgb(77, 77, 77);
+	position: fixed;
+	right: 7rem;
+	top: 14.5rem;
+	overflow-y: scroll;
+	border-radius: 4px;
+	h1 {
+		color: white;
+	}
+}
+.devs-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h4 {
+		color: white;
+		border: white solid 1px;
+		width: 100%;
+		padding: 10px;
+		cursor: pointer;
+		&:hover {
+			background: rgb(42, 42, 42);
+		}
+	}
+}
