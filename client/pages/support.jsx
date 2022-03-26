@@ -10,15 +10,11 @@ const Support = ({ user }) => {
 					This is a simple project management system to demonstrate my ability
 					and compitence with express/node.js and react/next noSQL{' '}
 				</p>
-				<p>
-					i would hope that this application leaves the viewer moist and
-					wanting, but there will be much to pick apart, which is all part of
-					the fun!
-				</p>
+
 				<h2>initialising the team</h2>
 				<p>
 					The app begins with the original user, which it is recommended
-					registers their fullName as Admin
+					registers their fullName as admin
 				</p>
 				<p>
 					this does not have to be the first user, just know that whoever sets
@@ -45,7 +41,7 @@ const Support = ({ user }) => {
 				</p>
 				<p>
 					the Admin oversees all, and then has the ability to update the overall
-					project progress
+					project progress.
 				</p>
 				<p>
 					once a project is completed. it will be set into a kind of legacy
@@ -55,11 +51,6 @@ const Support = ({ user }) => {
 				<p>
 					ofcorse, the admin overlord has the ability to reinstate the project
 					should the need arise.
-				</p>
-				<h2>Moving on</h2>
-				<p>
-					now that you understand the application of this software management
-					tool... try it for yourself.
 				</p>
 			</div>
 		</div>

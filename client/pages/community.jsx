@@ -6,13 +6,6 @@ const Community = ({ user }) => {
 			<h1>Community</h1>
 			<div className='community-container'>
 				<p>
-					its important that people are able to communicate in any industry.
-				</p>
-				<p>
-					sometimes the only interactions we have are completely
-					formal,professional and have no real connection.
-				</p>
-				<p>
 					i want to use this community page from the sidebar to add in a socket
 					chat system where users are completely free to waste time, take the
 					piss and entertain eachother.

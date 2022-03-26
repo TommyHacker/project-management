@@ -10,6 +10,7 @@ const userRoutes = require('./routes/userRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const ticketRoutes = require('./routes/ticketRoutes');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
 // mongoose.connect(
 // 	`mongodb+srv://<${process.env.CLUSTER_USERNAME}>:<${process.env.CLUSTER_PASSWORD}>@cluster0.kaorn.mongodb.net/Cluster0?retryWrites=true&w=majority`
@@ -29,6 +30,7 @@ const cookieOptions = {
 	Expires: 1000,
 };
 
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(

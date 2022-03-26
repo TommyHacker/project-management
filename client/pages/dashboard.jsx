@@ -53,10 +53,6 @@ const Dashboard = () => {
 					<>
 						<h1 style={{ textTransform: 'capitalize' }}>{user.fullName}</h1>
 						<p>{user.email}</p>
-						<p>
-							amount of tickets resolved ... although admin would have to sign
-							off on each one, that will be later down the road
-						</p>
 					</>
 				)}
 			</div>

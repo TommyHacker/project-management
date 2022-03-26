@@ -334,6 +334,7 @@ nav .home-btn {
 .side-bar .section .link-container .link {
   cursor: pointer;
   height: 100%;
+  max-height: 100px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -635,7 +636,6 @@ nav .home-btn {
   width: 100%;
   display: flex;
   align-items: center;
-  border: solid black 1px;
   overflow: scroll;
 }
 .project-page-section .assigned-list ::-webkit-scrollbar {
