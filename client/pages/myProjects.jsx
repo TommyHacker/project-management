@@ -24,8 +24,7 @@ const MyProjects = () => {
 	};
 
 	useEffect(() => {
-		if (!projects) return getProjects();
-		return;
+		return getProjects();
 	}, []);
 
 	return (
@@ -35,7 +34,8 @@ const MyProjects = () => {
 				{user && user.isAdmin && (
 					<button
 						onClick={() => setNewProjectForm(!newProjectForm)}
-						className='btn save-btn'>
+						className='btn save-btn'
+					>
 						New Project
 					</button>
 				)}
@@ -49,7 +49,8 @@ const MyProjects = () => {
 								<div
 									onClick={() => getProjectPageHandler(project._id)}
 									className='project-card'
-									key={project._id}>
+									key={project._id}
+								>
 									<div className='project-header'>
 										<h4 style={{ textTransform: 'none' }}>{project.title}</h4>
 										<p>
@@ -71,6 +72,16 @@ const MyProjects = () => {
 										<h4>
 											tickets: {project.tickets && project.tickets.length}
 										</h4>
+										<h4>
+											active:{' '}
+											{project.tickets &&
+												project.tickets.filter((t) => !t.resolved).length}
+										</h4>
+										<h4>
+											resolved:{' '}
+											{project.tickets &&
+												project.tickets.filter((t) => t.resolved).length}
+										</h4>
 										<h4>Status: {project.status}</h4>
 										<p>
 											last update:{' '}
@@ -79,6 +90,16 @@ const MyProjects = () => {
 												: 'just now.'}
 										</p>
 									</div>
+
+									{project.tickets &&
+										project.tickets.map((ticket, index) => {
+											if (index === project.tickets.length - 1)
+												return (
+													<h4 className='recent-ticket'>
+														recent ticket: {ticket.title}
+													</h4>
+												);
+										})}
 								</div>
 							);
 						})}

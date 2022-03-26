@@ -1,21 +1,21 @@
 {
-  "name": "client",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start":"next start",
-    "build": "next build",
-    "dev": "next dev",
-    "lint":"next lint"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.26.1",
-    "next": "^12.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  }
+	"name": "client",
+	"version": "1.0.0",
+	"description": "project management.",
+	"main": "index.js",
+	"scripts": {
+		"start": "next start",
+		"build": "next build",
+		"dev": "next dev",
+		"lint": "next lint"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.26.1",
+		"next": "^12.1.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	}
 }

@@ -19,8 +19,10 @@ router
 	.patch('/', userController.update);
 router
 	.get('/', userController.getUser)
-	.get('/all', isAdmin, userController.getAllUsers);
+	.get('/all', isAdmin, userController.getAllUsers)
+	.get('/notifications', userController.getNotifications);
 router
+	.delete('/deleteuser', isAdmin, userController.deleteUser)
 	.delete('/logout', userController.logout)
 	.delete('/', userController.delete);
 

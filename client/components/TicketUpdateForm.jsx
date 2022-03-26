@@ -24,23 +24,28 @@ const TicketUpdateForm = ({ ticket, projectId, setProject }) => {
 	};
 
 	return (
-		<div className='ticket-update-form-container'>
-			<form
-				onSubmit={(e) => ticketUpdateHandler(e)}
-				className='ticket-update-form'>
-				<div className='section'>
-					<label htmlFor='updateContent'>Update</label>
-					<input
-						autoComplete='off'
-						type='text'
-						name='updateContent'
-						placeholder='update content'
-						onChange={(e) => setContent(e.target.value)}
-					/>
+		<>
+			{ticket && !ticket.resolved && (
+				<div className='ticket-update-form-container'>
+					<form
+						onSubmit={(e) => ticketUpdateHandler(e)}
+						className='ticket-update-form'
+					>
+						<div className='section'>
+							<label htmlFor='updateContent'>Update</label>
+							<input
+								autoComplete='off'
+								type='text'
+								name='updateContent'
+								placeholder='update content'
+								onChange={(e) => setContent(e.target.value)}
+							/>
+						</div>
+						<button className='btn'>Submit Update</button>
+					</form>
 				</div>
-				<button className='btn'>Submit Update</button>
-			</form>
-		</div>
+			)}{' '}
+		</>
 	);
 };
 

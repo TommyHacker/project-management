@@ -9,6 +9,8 @@ import TicketForm from '../components/TicketForm';
 import Ticket from '../components/Ticket';
 
 const Project = () => {
+	const [confirmDeletePrompt, setConfirmDeletePrompt] = useState(false);
+
 	const [ticketForm, setTicketForm] = useState(false);
 
 	const [status, setStatus] = useState();
@@ -65,21 +67,21 @@ const Project = () => {
 		setProject({ ...project, assigned: newAssigned });
 	};
 
-	//SAVE => PATCH REQUEST TO SERVER THEN REDIRECT TO ALLPROJECTS PAGE
+	//SAVE => PATCH REQUEST TO SERVER THEN UPDATE PROJECT STATE FROM RESPONSE
 	const saveProjectHandler = () => {
 		axios
 			.patch(
 				'http://localhost:4000/project/',
 				{
 					id: project._id,
-					status: status || project.status,
+					status: status,
 					assigned: project.assigned,
 				},
 				{ withCredentials: true }
 			)
-			.then((res) => console.log(res.data))
+			.then((res) => setProject(res.data.data))
 			.catch((err) => console.log(err));
-		return router.replace('/myProjects');
+		return;
 	};
 
 	const deleteProjectHandler = (id) => {
@@ -87,7 +89,7 @@ const Project = () => {
 		const data = { id };
 		axios
 			.delete(url, { withCredentials: true, data })
-			.then((res) => console.log(res))
+			.then((res) => consle.log(res))
 			.catch((err) => console.log(err));
 		return router.replace('/myProjects');
 	};
@@ -106,7 +108,8 @@ const Project = () => {
 			{/* BACK TO ALL PROJECTS */}
 			<button
 				onClick={() => router.replace('/myProjects')}
-				className='back-btn btn'>
+				className='back-btn btn'
+			>
 				Back
 			</button>
 
@@ -123,10 +126,7 @@ const Project = () => {
 									Current Status: {project.status}
 								</h4>
 								{user && user.isAdmin && (
-									<select
-										onChange={(e) =>
-											setProject({ ...project, status: e.target.value })
-										}>
+									<select onChange={(e) => setStatus(e.target.value)}>
 										<option value={project.status}>default</option>
 										<option value='in-progress'>in-progress</option>
 										<option value='testing'>testing</option>
@@ -141,19 +141,24 @@ const Project = () => {
 								<h4>assigned:</h4>
 								<div className='assigned-list'>
 									{project &&
+										project.assigned &&
 										project.assigned.map((dev, index) => {
 											return (
 												<div key={index}>
-													<h4>{dev},</h4>
 													{/* IF MORE THAN 1 ASSIGNEE LEFT, RENDER REMOVE DEV BUTTON */}
 													{project &&
-														user &&
-														project.assigned.length >= 2 &&
-														user.isAdmin && (
-															<button onClick={() => removeDevHandler(dev)}>
-																X
-															</button>
-														)}
+													user &&
+													project.assigned.length >= 2 &&
+													user.isAdmin ? (
+														<h4
+															className='dev-remove'
+															onClick={() => removeDevHandler(dev)}
+														>
+															{dev}
+														</h4>
+													) : (
+														<h4 className='dev-handle'>{dev},</h4>
+													)}
 												</div>
 											);
 										})}
@@ -189,25 +194,60 @@ const Project = () => {
 
 						{/* PROJECT TICKETS */}
 						<div className='ticket-section'>
-							<h1>Tickets: {project.tickets.length}</h1>
+							<h1>Tickets: {project.tickets && project.tickets.length}</h1>
+							<h4>
+								resolved:{' '}
+								{project.tickets &&
+									project.tickets.filter((t) => t.resolved).length}
+							</h4>
+							<h4>
+								active:{' '}
+								{project.tickets &&
+									project.tickets.filter((t) => !t.resolved).length}
+							</h4>
 							<button
 								onClick={() => setTicketForm(!ticketForm)}
-								className='btn'>
+								className='btn'
+							>
 								+ Post Ticket
 							</button>
 						</div>
 						<div className='tickets-grid'>
+							<h1 style={{ marginTop: '4rem' }} className='title'>
+								active
+							</h1>
 							{project.tickets &&
-								project.tickets.map((ticket, index) => {
-									return (
-										<Ticket
-											key={ticket._id}
-											ticket={ticket}
-											projectId={project._id}
-											project={project}
-											setProject={setProject}
-										/>
-									);
+								project.tickets.map((ticket) => {
+									if (!ticket.resolved)
+										return (
+											<div className='active-ticket'>
+												<Ticket
+													key={ticket._id}
+													ticket={ticket}
+													projectId={project._id}
+													project={project}
+													setProject={setProject}
+												/>
+											</div>
+										);
+								})}
+							<h1 style={{ marginTop: '4rem' }} className='title'>
+								Resolved
+							</h1>
+							{project.tickets &&
+								project.tickets.map((ticket) => {
+									if (ticket.resolved)
+										return (
+											<div className='inactive-ticket'>
+												<Ticket
+													key={ticket._id}
+													ticket={ticket}
+													projectId={project._id}
+													project={project}
+													setProject={setProject}
+												/>
+											</div>
+										);
 								})}
 						</div>
 						{ticketForm && (
@@ -223,18 +263,46 @@ const Project = () => {
 						{user && user.isAdmin && (
 							<button
 								className='save-btn btn'
-								onClick={() => saveProjectHandler()}>
+								onClick={() => saveProjectHandler()}
+							>
 								save
 							</button>
 						)}
 						{/* DELETE PROJECT ADMIN ONLY */}
 						<div className='delete-btn-container'>
 							{user && user.isAdmin && (
-								<button
-									onClick={() => deleteProjectHandler(project._id)}
-									className='btn delete-btn'>
-									Delete project
-								</button>
+								<>
+									{confirmDeletePrompt && (
+										<div className='delete-project-prompt'>
+											<h4>
+												Are you sure you want to permanently remove project and
+												all content?
+											</h4>
+											<div className='section'>
+												<button
+													className='btn delete-btn'
+													onClick={() => deleteProjectHandler(project._id)}
+												>
+													Confirm
+												</button>
+												<button
+													className='btn delete-btn'
+													onClick={() => setConfirmDeletePrompt(false)}
+												>
+													Cancel
+												</button>
+											</div>
+										</div>
+									)}
+									{!confirmDeletePrompt && (
+										<button
+											onClick={() => setConfirmDeletePrompt(true)}
+											className='btn delete-btn'
+										>
+											Delete Project
+										</button>
+									)}
+								</>
 							)}
 						</div>
 					</div>

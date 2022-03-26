@@ -1,7 +1,7 @@
 /** @format */
 
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 
 const Notifications = ({ user }) => {
@@ -38,6 +38,18 @@ const Notifications = ({ user }) => {
 	// 		.catch((err) => console.log(err));
 	// };
 
+	const getNotifications = () => {
+		axios
+			.get('http://localhost:4000/user/notifications', {
+				withCredentials: true,
+			})
+			.then((res) => setUser({ ...user, notifications: res.data.data }))
+			.catch((err) => console.log(err));
+	};
+	useEffect(() => {
+		getNotifications();
+	}, []);
+
 	return (
 		<div className='page-container'>
 			<h1>Notifications</h1>
@@ -54,11 +66,13 @@ const Notifications = ({ user }) => {
 									notification.seen
 										? 'notification-card read'
 										: 'notification-card'
-								}>
+								}
+							>
 								<h2 className='notification-sender'>{notification.sender}</h2>
 								<h4
 									onClick={() => console.log(notification)}
-									className='notification-content'>
+									className='notification-content'
+								>
 									{notification.content}
 								</h4>
 								<h6 className='notification-date'>
@@ -73,12 +87,14 @@ const Notifications = ({ user }) => {
 								</div>
 								<button
 									className='mark-as-read-btn'
-									onClick={() => markAsReadHandler(notification._id)}>
+									onClick={() => markAsReadHandler(notification._id)}
+								>
 									{notification.seen ? 'Mark Unread' : 'Mark Read'}
 								</button>
 								<button
 									className='delete-btn'
-									onClick={() => deleteNotificationHandler(notification._id)}>
+									onClick={() => deleteNotificationHandler(notification._id)}
+								>
 									X
 								</button>
 							</div>

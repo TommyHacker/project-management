@@ -21,16 +21,23 @@ exports.readOne = async (req, res) => {
 exports.update = async (req, res) => {
 	try {
 		const { id, assigned, status } = req.body;
-		const project = await Project.findByIdAndUpdate(id, { assigned, status });
+		const project = await Project.findById(id);
+		const mailingList = [];
+		await project.assigned.filter((dev) => {
+			if (!assigned.includes(dev)) return mailingList.push(dev);
+		});
+		project.assigned = assigned;
+		project.status = status;
 		await project.save();
-		project.assigned.map(async (dev) => {
+		mailingList.map(async (dev) => {
 			const user = await User.findOne({ fullName: dev });
 			await createNotification(
 				user._id,
-				`you have been assigned to new project. ${project._id}`
+				`you have been assigned to new project. ${project._id}`,
+				1
 			);
 		});
-		res.json({ status: 'success', message: 'project updated.' });
+		res.json({ status: 'success', message: 'project updated.', data: project });
 	} catch (err) {
 		console.log(err);
 		res.send('not this time.');

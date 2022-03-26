@@ -37,6 +37,19 @@ const AllUsers = () => {
 			.catch((err) => console.log(err));
 	};
 
+	const deleteUserHandler = async (userId) => {
+		const data = { userId };
+		await axios
+			.delete('http://localhost:4000/user/deleteuser', {
+				withCredentials: true,
+				data,
+			})
+			.then((res) => {
+				setUsers(res.data.data);
+			})
+			.catch((err) => console.log(err));
+	};
+
 	// get users on pageload.
 	useEffect(() => {
 		if (!users) return getUsersHandler();
@@ -48,7 +61,7 @@ const AllUsers = () => {
 			<div className='body'>
 				<div className='allusers-container'>
 					{users &&
-						users.map((user, index) => {
+						users.map((user) => {
 							return (
 								<div className='user-card' key={user._id}>
 									<h4 className='user-title'>{user.fullName}</h4>
@@ -58,33 +71,36 @@ const AllUsers = () => {
 									<div className='user-section'>
 										<div className='control'>
 											<h4>is Developer</h4>
-											<select
-												name='isDeveloper'
-												onChange={(e) => isDeveloperHandler(e, user._id)}>
-												{user && user.isDeveloper ? (
-													<>
-														<option selected value='true'>
-															true
-														</option>
-														<option value='false'>false</option>
-													</>
-												) : (
-													<>
-														<option value='true'>true</option>
-														<option selected value='false'>
-															false
-														</option>
-													</>
-												)}
-											</select>
+											{user && user.fullName !== 'admin' && (
+												<select
+													name='isDeveloper'
+													onChange={(e) => isDeveloperHandler(e, user._id)}
+												>
+													{user && user.isDeveloper ? (
+														<>
+															<option selected value='true'>
+																true
+															</option>
+															<option value='false'>false</option>
+														</>
+													) : (
+														<>
+															<option value='true'>true</option>
+															<option selected value='false'>
+																false
+															</option>
+														</>
+													)}
+												</select>
+											)}
 										</div>
-
 										<div className='control'>
 											<h4>is admin</h4>
 											{user.fullName != 'admin' ? (
 												<select
 													onChange={(e) => isAdminHandler(e, user._id)}
-													name='isAdmin'>
+													name='isAdmin'
+												>
 													{user && user.isAdmin ? (
 														<>
 															<option selected value='true'>
@@ -104,6 +120,12 @@ const AllUsers = () => {
 											) : (
 												''
 											)}
+											<button
+												onClick={() => deleteUserHandler(user._id)}
+												className='btn'
+											>
+												Delete User
+											</button>
 										</div>
 									</div>
 								</div>

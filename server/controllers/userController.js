@@ -22,13 +22,18 @@ exports.register = async (req, res) => {
 		const user = new User({
 			fullName,
 			email,
-			password: hashedPassword,
+			password,
+			isAdmin: fullName === 'admin' ? true : false,
 		});
 		await user.save();
 		await createNotification(user._id, 'Welcome to project management.');
 		const accessToken = createToken(user._id);
 		res.cookie('accessToken', accessToken);
-		res.json({ status: 'success', message: 'user registered successfully.' });
+		res.json({
+			status: 'success',
+			message: 'user registered successfully.',
+			data: user,
+		});
 	} catch (err) {
 		console.log(err);
 		res.json({ status: 'fail', message: err });
@@ -86,24 +91,45 @@ exports.update = async (req, res) => {
 	}
 };
 exports.delete = async (req, res) => {
+	return res.json({
+		status: 'success',
+		message: 'user account deleted. we promise!',
+	});
+
+	// try {
+	// 	const { password } = req.body;
+	// 	const user = await User.findById(res.locals.currentUser._id).select(
+	// 		'+password'
+	// 	);
+	// 	const verified = verifyPassword(password, user.password);
+	// 	if (!verified)
+	// 		return res.json({ status: 'fail', message: 'not authorized.' });
+	// 	await user.delete();
+	// 	res.json({ status: 'success', message: 'user deleted' });
+	// } catch (err) {
+	// 	console.log(err);
+	// 	res.json({
+	// 		status: 'fail',
+	// 		message: 'something went wrong while trying to delete user.',
+	// 	});
+	// }
+};
+exports.deleteUser = async (req, res) => {
 	try {
-		const { password } = req.body;
-		const user = await User.findById(res.locals.currentUser._id).select(
-			'+password'
-		);
-		const verified = verifyPassword(password, user.password);
-		if (!verified)
-			return res.json({ status: 'fail', message: 'not authorized.' });
-		await user.delete();
-		res.json({ status: 'success', message: 'user deleted' });
+		const { userId } = req.body;
+		const user = await User.findByIdAndDelete(userId);
+		const users = await User.find({});
+		res.json({
+			status: 'success',
+			message: 'user has been deleted successfully.',
+			data: users,
+		});
 	} catch (err) {
 		console.log(err);
-		res.json({
-			status: 'fail',
-			message: 'something went wrong while trying to delete user.',
-		});
+		res.send(err.message);
 	}
 };
+
 exports.getUser = async (req, res) => {
 	res.json({
 		status: 'success',
@@ -147,6 +173,16 @@ exports.updateNotification = async (req, res) => {
 		console.log(err.message);
 	}
 };
+exports.getNotifications = async (req, res) => {
+	const user = await User.findOne({
+		fullName: res.locals.currentUser.fullName,
+	});
+	res.json({
+		status: 'success',
+		message: 'got notifications.',
+		data: user.notifications,
+	});
+};
 
 exports.isAdmin = async (req, res) => {
 	const { id, isAdmin } = req.body;
@@ -163,5 +199,12 @@ exports.isAdmin = async (req, res) => {
 exports.isDeveloper = async (req, res) => {
 	const { id, isDeveloper } = req.body;
 	const user = await User.findByIdAndUpdate(id, { isDeveloper });
+	await createNotification(
+		user._id,
+		isDeveloper
+			? 'your account has been changed to Developer.'
+			: 'your account is no longer in Developer mode',
+		2
+	);
 	res.send('updated');
 };

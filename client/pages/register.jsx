@@ -3,11 +3,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
-const Register = ({ user }) => {
+const Register = () => {
+	const { user, setUser } = useContext(UserContext);
 	useEffect(() => {
 		if (user) return router.push('/');
-	}, []);
+	}, [user]);
 
 	const router = useRouter();
 	const [fullName, setFullName] = useState();
@@ -22,12 +25,13 @@ const Register = ({ user }) => {
 				{ fullName, email, password },
 				{ withCredentials: true }
 			)
-			.then((res) => console.log(res.message))
+			.then((res) => {
+				setUser(res.data.data);
+			})
 			.catch((err) => console.log(err));
 		setFullName('');
 		setEmail('');
 		setPassword('');
-		router.replace('/login');
 	};
 
 	return (

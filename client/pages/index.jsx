@@ -1,11 +1,13 @@
 /** @format */
 
+import axios from 'axios';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 
 const Index = () => {
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
+
 	return (
 		<div className='page-container'>
 			<h1>Welcome to project management.</h1>
@@ -24,7 +26,8 @@ const Index = () => {
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'center',
-						}}>
+						}}
+					>
 						{user.fullName}
 					</h1>
 				)}

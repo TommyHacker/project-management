@@ -45,3 +45,8 @@ body {
 @import './allusers';
 @import './comments';
 @import './tickets';
+
+.btn {
+	border: solid rgba(0, 0, 0, 0.267) 1px;
+	font-weight: 700;
+}

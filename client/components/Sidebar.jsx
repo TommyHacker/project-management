@@ -69,22 +69,36 @@ const Sidebar = () => {
 					<div
 						onClick={() => profileRouteHandler()}
 						style={{ textTransform: 'capitalize' }}
-						className='user-pog'>
+						className='user-pog'
+					>
 						{user.fullName && user.fullName[0]}
 					</div>
 					<div className='section'>
-						<Link href={'/dashboard'}>Dashboard</Link>
-
-						<Link href={'/notifications'}>Notifications</Link>
-						{user.notifications && notificationCount >= 1 && (
-							<div className='notification-dot'>{notificationCount}</div>
-						)}
-						<Link href={'/myProjects'}>My Projects</Link>
+						<div className='link-container'>
+							<Link href={'/dashboard'}>Dashboard</Link>
+						</div>
+						<div className='notification-link-container'>
+							<Link href={'/notifications'}>Notifications</Link>
+							{user && user.notifications && notificationCount >= 1 && (
+								<span className='notification-dot'>{notificationCount}</span>
+							)}
+						</div>
+						<div className='link-container'>
+							<Link href={'/myProjects'}>My Projects</Link>
+						</div>
 					</div>
 					<div className='section'>
-						{user.isAdmin && <Link href={'/allUsers'}>all users</Link>}
-						<Link href={'/support'}>support</Link>
-						<Link href={'/community'}>community</Link>
+						{user.isAdmin && (
+							<div className='link-container'>
+								<Link href={'/allUsers'}>all users</Link>
+							</div>
+						)}
+						<div className='link-container'>
+							<Link href={'/support'}>support</Link>
+						</div>
+						<div className='link-container'>
+							<Link href={'/community'}>community</Link>
+						</div>
 					</div>
 					<button className='logout-btn' onClick={(e) => logoutHandler(e)}>
 						logout
