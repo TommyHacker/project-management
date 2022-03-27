@@ -1,20 +1,26 @@
 /** @format */
-import Navbar from '../components/Navbar';
 import '../styles/css/main.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import { UserContext } from '../context/UserContext';
-import axios from 'axios';
-import { useContext } from 'react';
 
 const MyApp = ({ Component, pageProps }) => {
 	const [user, setUser] = useState();
+	const [notifications, setNotifications] = useState(null);
 	return (
 		<>
-			<UserContext.Provider value={{ user, setUser }}>
-				<Sidebar />
-				<Component {...pageProps} />
-			</UserContext.Provider>
+			<Sidebar
+				user={user}
+				setUser={setUser}
+				notifications={notifications}
+				setNotifications={setNotifications}
+			/>
+			<Component
+				user={user}
+				setUser={setUser}
+				notifications={notifications}
+				setNotifications={setNotifications}
+				{...pageProps}
+			/>
 		</>
 	);
 };

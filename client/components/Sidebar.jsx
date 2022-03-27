@@ -2,15 +2,12 @@
 
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { UserContext } from '../context/UserContext';
 
-const Sidebar = () => {
-	const { user, setUser } = useContext(UserContext);
-	const [count, setCount] = useState(0);
-	const [notificationCount, setNotificationCount] = useState(0);
+const Sidebar = ({ user, setUser, notifications, setNotifications }) => {
 	const router = useRouter();
+	const [notificationCount, setNotificationCount] = useState(0);
 
 	const redirectHome = () => {
 		router.push('/');
@@ -25,10 +22,12 @@ const Sidebar = () => {
 		axios
 			.get('http://localhost:4000/user', { withCredentials: true })
 			.then((res) => {
-				return setUser(res.data.data);
+				setUser(res.data.data);
+				setNotifications(user.notifications);
+				setNotificationCount(notifications.length);
+				return;
 			})
 			.catch((err) => console.log(err));
-		setNotificationCount();
 	};
 
 	const unreadNotificationCalc = () => {
@@ -79,7 +78,7 @@ const Sidebar = () => {
 						</div>
 						<div className='notification-link-container'>
 							<Link href={'/notifications'}>Notifications</Link>
-							{user && user.notifications && notificationCount >= 1 && (
+							{notificationCount >= 1 && (
 								<span className='notification-dot'>{notificationCount}</span>
 							)}
 						</div>

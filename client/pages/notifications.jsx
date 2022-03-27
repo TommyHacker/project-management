@@ -1,11 +1,10 @@
 /** @format */
 
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
-import { UserContext } from '../context/UserContext';
+import { useEffect, useState } from 'react';
 
-const Notifications = ({ user }) => {
-	const { user, setUser } = useContext(UserContext);
+const Notifications = ({ user, setUser }) => {
+	// const [notifications, setNotifications] = useState(null);
 
 	const markAsReadHandler = (id) => {
 		axios
@@ -15,7 +14,7 @@ const Notifications = ({ user }) => {
 				{ withCredentials: true }
 			)
 			.then((res) => {
-				setUser({ ...user, notifications: res.data.data });
+				setUser((prev) => ({ ...prev, notifications: res.data.data }));
 			})
 			.catch((err) => console.log('okay'));
 	};
@@ -27,37 +26,32 @@ const Notifications = ({ user }) => {
 				{ id },
 				{ withCredentials: true }
 			)
-			.then((res) => setUser({ ...user, notifications: res.data.data }))
+			.then((res) => setNotifications(res.data.data))
 			.catch((err) => console.log(err));
 	};
-
-	// const getUser = () => {
-	// 	axios
-	// 		.get('http://localhost:4000/user', { withCredentials: true })
-	// 		.then((res) => setUser({ ...user, notifications: res.data.data }))
-	// 		.catch((err) => console.log(err));
-	// };
 
 	const getNotifications = () => {
 		axios
 			.get('http://localhost:4000/user/notifications', {
 				withCredentials: true,
 			})
-			.then((res) => setUser({ ...user, notifications: res.data.data }))
+			.then((res) => setNotifications(res.data.data))
 			.catch((err) => console.log(err));
 	};
+
 	useEffect(() => {
-		getNotifications();
-	}, []);
+		if (user) return getNotifications();
+		return;
+	}, [user]);
 
 	return (
 		<div className='page-container'>
 			<h1>Notifications</h1>
 			<div className='body'>
-				{user.notifications.length <= 0 && (
+				{user && user.notifications.length <= 0 && (
 					<h2 style={{ textAlign: 'center' }}>No Notifications.</h2>
 				)}
-				{user.notifications &&
+				{user &&
 					user.notifications.map((notification) => {
 						return (
 							<div

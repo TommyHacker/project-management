@@ -1,12 +1,9 @@
 /** @format */
 
 import axios from 'axios';
-import { useState, useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import { useState } from 'react';
 
-const TicketUpdateForm = ({ ticket, projectId, setProject }) => {
-	const { user } = useContext(UserContext);
-
+const TicketUpdateForm = ({ ticket, projectId, setProject, user }) => {
 	const [content, setContent] = useState();
 
 	const ticketUpdateHandler = (e) => {

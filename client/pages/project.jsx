@@ -1,21 +1,18 @@
 /** @format */
 
 import { useRouter } from 'next/router';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import DevsList from '../components/DevsList';
-import { UserContext } from '../context/UserContext';
 import TicketForm from '../components/TicketForm';
 import Ticket from '../components/Ticket';
 
-const Project = () => {
+const Project = ({ user }) => {
 	const [confirmDeletePrompt, setConfirmDeletePrompt] = useState(false);
 
 	const [ticketForm, setTicketForm] = useState(false);
 
 	const [status, setStatus] = useState();
-
-	const { user } = useContext(UserContext);
 
 	// NEXT USEROUTER FOR REDIRECTING
 	const router = useRouter();

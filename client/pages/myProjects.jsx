@@ -1,14 +1,12 @@
 /** @format */
 
-import { useContext, useState, useEffect } from 'react';
-import { UserContext } from '../context/UserContext';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import NewProjectForm from '../components/NewProjectForm';
 
-const MyProjects = () => {
+const MyProjects = ({ user, setUser }) => {
 	const router = useRouter();
-	const { user, setUser } = useContext(UserContext);
 	const [projects, setProjects] = useState();
 	const [newProjectForm, setNewProjectForm] = useState(false);
 

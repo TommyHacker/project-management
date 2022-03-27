@@ -1,13 +1,8 @@
 /** @format */
 
-import axios from 'axios';
 import Link from 'next/link';
-import { useContext, useEffect } from 'react';
-import { UserContext } from '../context/UserContext';
 
-const Index = () => {
-	const { user, setUser } = useContext(UserContext);
-
+const Index = ({ user }) => {
 	return (
 		<div className='page-container'>
 			<h1>Welcome to project management.</h1>

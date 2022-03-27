@@ -3,11 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
 
-const Register = () => {
-	const { user, setUser } = useContext(UserContext);
+const Register = ({ user, setUser }) => {
 	useEffect(() => {
 		if (user) return router.push('/');
 	}, [user]);

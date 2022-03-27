@@ -1,13 +1,9 @@
 /** @format */
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { UserContext } from '../context/UserContext';
-const Login = () => {
-	//get user/setUser from useContext;
-	const { user, setUser } = useContext(UserContext);
-
+const Login = ({ user, setUser }) => {
 	//prepare useRouter to redirect on user = true;
 	const router = useRouter();
 

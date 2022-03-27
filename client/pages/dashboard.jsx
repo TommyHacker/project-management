@@ -1,10 +1,8 @@
 /** @format */
-import { UserContext } from '../context/UserContext';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Dashboard = () => {
-	const { user, setUser } = useContext(UserContext);
+const Dashboard = ({ user, setUser }) => {
 	const [userData, setUserData] = useState();
 	const [projectsListed, setProjectsListed] = useState(false);
 	const [ticketsListed, setTicketsListed] = useState(false);
@@ -35,7 +33,7 @@ const Dashboard = () => {
 		<div className='page-container'>
 			<h1>Dashboard</h1>
 			<div className='body'>
-				<h2 className='fadefromred' onClick={() => expandTicketsHandler()}>
+				<h2 onClick={() => expandTicketsHandler()}>
 					Tickets : {userData && userData.ticketsCount.length}
 				</h2>
 				{ticketsListed &&
