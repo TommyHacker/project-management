@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useState, useRef, useEffect } from 'react';
 import CommentForm from './CommentForm';
-import ResolveTicketPrompt from './resolveTicketPrompt';
+import ResolveTicketPrompt from './ResolveTicketPrompt';
 import TicketUpdateForm from './TicketUpdateForm';
 
 const Ticket = ({ ticket, projectId, project, setProject }) => {
